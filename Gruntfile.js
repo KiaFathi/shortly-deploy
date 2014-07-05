@@ -3,6 +3,18 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      dist: {
+        src: [ "./public/client/app.js",
+         "./public/client/createLinkView.js",
+          "./public/client/link.js",
+         "./public/client/links.js",
+         "./public/client/linksView.js",
+         "./public/client/linkView.js",
+         "./public/client/router.js"
+
+        ],
+        dest: "./productionClient.js",
+      }
     },
 
     mochaTest: {
@@ -21,11 +33,14 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      src: "./productionClient.js",
+      dest: "./productionClient.min.js"
     },
 
     jshint: {
       files: [
         // Add filespec list here
+
       ],
       options: {
         force: 'true',
