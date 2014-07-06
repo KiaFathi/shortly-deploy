@@ -11,9 +11,8 @@ module.exports = function(grunt) {
          "./public/client/linksView.js",
          "./public/client/linkView.js",
          "./public/client/router.js"
-
         ],
-        dest: "./productionClient.js",
+        dest: "./public/dist/productionClient.js"
       }
     },
 
@@ -33,14 +32,17 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      src: "./productionClient.js",
-      dest: "./productionClient.min.js"
+      build: {
+        src: "./public/dist/productionClient.js",
+        dest: "./public/dist/productionClient.min.js"
+      }
     },
 
     jshint: {
       files: [
         // Add filespec list here
-
+        "Gruntfile.js",
+        "./public/dist/productionClient.min.js"
       ],
       options: {
         force: 'true',
@@ -121,6 +123,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'concat', 'uglify', 'jshint', 'test'
   ]);
 
 
